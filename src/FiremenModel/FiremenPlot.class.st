@@ -10,6 +10,12 @@ FiremenPlot class >> entityName [
 	^ 'Plot'
 ]
 
+{ #category : #'fire management' }
+FiremenPlot >> extinguishFire [
+
+	self state: #empty
+]
+
 { #category : #testing }
 FiremenPlot >> hasNeighboursOnFire [
 

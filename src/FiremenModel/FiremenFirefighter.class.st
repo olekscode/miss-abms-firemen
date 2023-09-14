@@ -21,5 +21,15 @@ FiremenFirefighter >> pov [
 { #category : #stepping }
 FiremenFirefighter >> step [
 
-	self randomWalk
+	self walkToFire.
+	self patch isFire ifTrue: [ self patch extinguishFire ].
+]
+
+{ #category : #'as yet unclassified' }
+FiremenFirefighter >> walkToFire [
+
+	self patch neighbourhood
+		detect: [ :neighbour | neighbour isFire ]
+		ifFound: [ :neighbour | self moveTo: neighbour ]
+		ifNone: [ self randomWalk ]
 ]

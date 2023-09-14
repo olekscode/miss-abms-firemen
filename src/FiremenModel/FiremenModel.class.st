@@ -36,8 +36,8 @@ FiremenModel >> initialize [
 { #category : #control }
 FiremenModel >> step: t [
 
-	self stepSynchronouslyCA: t.
 	self askRandom: FiremenFirefighter toDo: #step.
+	self stepSynchronouslyCA: t.
 ]
 
 { #category : #accessing }
