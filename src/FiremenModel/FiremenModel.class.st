@@ -3,7 +3,8 @@ Class {
 	#superclass : #CMAbstractModel,
 	#instVars : [
 		'thePlots',
-		'theFirefighters'
+		'theFirefighters',
+		'theCows'
 	],
 	#category : #FiremenModel
 }
@@ -29,12 +30,20 @@ FiremenModel >> initialize [
 	super initialize.
 	thePlots := OrderedCollection new.
 	theFirefighters := OrderedCollection new.
+	theCows := OrderedCollection new.
 ]
 
 { #category : #control }
 FiremenModel >> step: t [
 
-	self stepSynchronouslyCA: t
+	self stepSynchronouslyCA: t.
+	self askRandom: FiremenFirefighter toDo: #step.
+]
+
+{ #category : #accessing }
+FiremenModel >> theCows [
+
+	^ theCows
 ]
 
 { #category : #accessing }
