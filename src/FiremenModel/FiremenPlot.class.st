@@ -10,6 +10,38 @@ FiremenPlot class >> entityName [
 	^ 'Plot'
 ]
 
+{ #category : #testing }
+FiremenPlot >> hasNeighboursOnFire [
+
+	^ self neighbourhood anySatisfy: [ :neighbour | neighbour isFire ]
+]
+
+{ #category : #testing }
+FiremenPlot >> isEmpty [
+
+	^ state = #empty
+]
+
+{ #category : #testing }
+FiremenPlot >> isFire [
+
+	^ state = #fire
+]
+
+{ #category : #testing }
+FiremenPlot >> isForest [
+
+	^ state = #forest
+]
+
+{ #category : #control }
+FiremenPlot >> newState [
+	
+	(self isForest and: [ self hasNeighboursOnFire ])
+		ifTrue: [ self bufferState: #fire ]
+		ifFalse: [ self bufferState: state ].
+]
+
 { #category : #pov }
 FiremenPlot >> pov [
 
