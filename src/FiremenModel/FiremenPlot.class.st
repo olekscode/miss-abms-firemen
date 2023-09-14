@@ -51,8 +51,6 @@ FiremenPlot >> newState [
 { #category : #pov }
 FiremenPlot >> pov [
 
-	(self hasOccupantsOfClass: FiremenFirefighter) ifTrue: [ ^ Color pink ].
-
 	state = #forest ifTrue: [ ^ Color green ].
 	state = #fire ifTrue: [ ^ Color red ].
 	
