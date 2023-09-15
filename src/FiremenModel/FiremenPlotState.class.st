@@ -22,12 +22,6 @@ FiremenPlotState >> color [
 ]
 
 { #category : #testing }
-FiremenPlotState >> isAshState [
-
-	^ false
-]
-
-{ #category : #testing }
 FiremenPlotState >> isEmptyState [
 
 	^ false
@@ -54,7 +48,7 @@ FiremenPlotState >> isForestState [
 { #category : #accessing }
 FiremenPlotState >> newState [
 
-	self subclassResponsibility
+	^ self
 ]
 
 { #category : #accessing }

@@ -7,17 +7,11 @@ Class {
 { #category : #accessing }
 FiremenPlotExtinguishedState >> color [
 
-	^ Color veryVeryLightGray
+	^ Color gray
 ]
 
 { #category : #testing }
 FiremenPlotExtinguishedState >> isExtinguishedState [
 
 	^ true
-]
-
-{ #category : #'instance creation' }
-FiremenPlotExtinguishedState >> newState [
-
-	^ self
 ]

@@ -11,18 +11,6 @@ Class {
 }
 
 { #category : #'- probes' }
-FiremenModel class >> colorOfProbe_probeNumberOfAshPlots [
-
-  ^ FiremenPlotAshState new color
-]
-
-{ #category : #'- probes' }
-FiremenModel class >> colorOfProbe_probeNumberOfEmptyPlots [
-
-  ^ FiremenPlotEmptyState new color
-]
-
-{ #category : #'- probes' }
 FiremenModel class >> colorOfProbe_probeNumberOfExtinguishedPlots [
 
   ^ FiremenPlotExtinguishedState new color
@@ -140,20 +128,6 @@ FiremenModel >> initialize [
 	thePlots := OrderedCollection new.
 	theFirefighters := OrderedCollection new.
 	groups := OrderedCollection new.
-]
-
-{ #category : #probes }
-FiremenModel >> probeNumberOfAshPlots [
-
-	<probe>
-	^ (thePlots select: [ :plot | plot isAsh ]) size
-]
-
-{ #category : #probes }
-FiremenModel >> probeNumberOfEmptyPlots [
-
-	<probe>
-	^ (thePlots select: [ :plot | plot isEmpty ]) size
 ]
 
 { #category : #probes }

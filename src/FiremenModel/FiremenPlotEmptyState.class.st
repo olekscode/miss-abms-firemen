@@ -15,9 +15,3 @@ FiremenPlotEmptyState >> isEmptyState [
 
 	^ true
 ]
-
-{ #category : #'instance creation' }
-FiremenPlotEmptyState >> newState [
-
-	^ self
-]

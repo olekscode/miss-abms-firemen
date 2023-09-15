@@ -30,12 +30,6 @@ FiremenPlot >> initialize [
 ]
 
 { #category : #testing }
-FiremenPlot >> isAsh [
-
-	^ state isAshState
-]
-
-{ #category : #testing }
 FiremenPlot >> isEmpty [
 
 	^ state isEmptyState
