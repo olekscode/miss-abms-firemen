@@ -56,7 +56,7 @@ FiremenModel >> divideFirefightersIntoGroups: aNumberOfGroups [
 { #category : #init }
 FiremenModel >> init [
 
-	self createGridLines: 30 columns: 30 neighbourhood: 8 closed: true.
+	self createGridLines: 50 columns: 50 neighbourhood: 8 closed: true.
 	
 	thePlots do: [ :plot | 
 		Cormas random < 0.5 ifTrue: [
@@ -65,6 +65,9 @@ FiremenModel >> init [
 	(self pickEntity: FiremenPlot) setOnFire.
 	
 	self createN: numberOfFirefighters randomlyLocatedAloneEntities: FiremenFirefighter.
+	
+	self displayPov: #pov of: FiremenFirefighter.
+	self displayPov: #pov of: FiremenPlot.
 ]
 
 { #category : #init }
