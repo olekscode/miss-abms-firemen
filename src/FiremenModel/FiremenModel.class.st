@@ -23,24 +23,34 @@ FiremenModel class >> colorOfProbe_probeNumberOfPlotsOnFire [
 ]
 
 { #category : #'as yet unclassified' }
-FiremenModel >> divideFirefightersIntoGroups [
+FiremenModel >> divideFirefightersIntoGroups: aNumberOfGroups [
 
-	| group1 group2 |
+	| group groupColors groupSize firstMemberIndex |
 	
-	group1 := FiremenGroup new.
-	group2 := FiremenGroup new.
+	"This is a color palette - just an array of colors"
+	groupColors := RSQualitativeColorPalette new set312 range.
 	
-	group1 color: Color yellow.
-	group2 color: Color purple.
+	aNumberOfGroups > groupColors size
+		ifTrue: [ self error: 'Too many groups! We do not have enough colors' ].
+		
+	groupSize := (numberOfFirefighters / aNumberOfGroups) asInteger.
 	
-	1 to: (numberOfFirefighters / 2) do: [ :index |
-		group1 add: (theFirefighters at: index) ].
+	firstMemberIndex := 1.
+
+	1 to: aNumberOfGroups do: [ :groupIndex |
+		group := FiremenGroup new.
+		group color: (groupColors at: groupIndex).
+		
+		firstMemberIndex to: firstMemberIndex + groupSize - 1 do: [ :memberIndex |
+			group add: (theFirefighters at: memberIndex) ].
+		
+		groups add: group.
+		firstMemberIndex := firstMemberIndex + groupSize ].
 	
-	(numberOfFirefighters / 2) + 1 to: numberOfFirefighters do: [ :index |
-		group2 add: (theFirefighters at: index) ].
-	
-	groups add: group1.
-	groups add: group2.
+	"Remaining firefighters"
+	firstMemberIndex = theFirefighters size ifFalse: [ 
+		firstMemberIndex to: theFirefighters size do: [ :memberIndex |
+			groups last add: (theFirefighters at: memberIndex) ] ]
 ]
 
 { #category : #init }
@@ -56,8 +66,48 @@ FiremenModel >> init [
 	(self pickEntity: FiremenPlot) state: #fire.
 	
 	self createN: numberOfFirefighters randomlyLocatedAloneEntities: FiremenFirefighter.
-	
-	self divideFirefightersIntoGroups.
+]
+
+{ #category : #init }
+FiremenModel >> initGroups1 [
+
+	self init.
+	self divideFirefightersIntoGroups: 1.
+]
+
+{ #category : #init }
+FiremenModel >> initGroups12 [
+
+	self init.
+	self divideFirefightersIntoGroups: 12.
+]
+
+{ #category : #init }
+FiremenModel >> initGroups2 [
+
+	self init.
+	self divideFirefightersIntoGroups: 2.
+]
+
+{ #category : #init }
+FiremenModel >> initGroups3 [
+
+	self init.
+	self divideFirefightersIntoGroups: 3.
+]
+
+{ #category : #init }
+FiremenModel >> initGroups4 [
+
+	self init.
+	self divideFirefightersIntoGroups: 4.
+]
+
+{ #category : #init }
+FiremenModel >> initGroups6 [
+
+	self init.
+	self divideFirefightersIntoGroups: 6.
 ]
 
 { #category : #initialization }
