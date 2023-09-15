@@ -10,49 +10,63 @@ FiremenPlot class >> entityName [
 	^ 'Plot'
 ]
 
-{ #category : #'fire management' }
+{ #category : #'plot management' }
 FiremenPlot >> extinguishFire [
 
-	self state: #empty
+	self state: (FiremenPlotEmptyState for: self)
+]
+
+{ #category : #'plot management' }
+FiremenPlot >> generateForest [
+
+	self state: (FiremenPlotForestState for: self)
+]
+
+{ #category : #initialization }
+FiremenPlot >> initialize [
+
+	super initialize.
+	state := FiremenPlotEmptyState for: self.
 ]
 
 { #category : #testing }
-FiremenPlot >> hasNeighboursOnFire [
+FiremenPlot >> isAsh [
 
-	^ self neighbourhood anySatisfy: [ :neighbour | neighbour isFire ]
+	^ state isAshState
 ]
 
 { #category : #testing }
 FiremenPlot >> isEmpty [
 
-	^ state = #empty
+	^ state isEmptyState
 ]
 
 { #category : #testing }
 FiremenPlot >> isFire [
 
-	^ state = #fire
+	^ state isFireState
 ]
 
 { #category : #testing }
 FiremenPlot >> isForest [
 
-	^ state = #forest
+	^ state isForestState
 ]
 
 { #category : #control }
 FiremenPlot >> newState [
 	
-	(self isForest and: [ self hasNeighboursOnFire ])
-		ifTrue: [ self bufferState: #fire ]
-		ifFalse: [ self bufferState: state ].
+	self bufferState: state newState
 ]
 
 { #category : #pov }
 FiremenPlot >> pov [
 
-	state = #forest ifTrue: [ ^ Color green ].
-	state = #fire ifTrue: [ ^ Color red ].
-	
-	^ Color black
+	^ state color
+]
+
+{ #category : #'plot management' }
+FiremenPlot >> setOnFire [
+
+	self state: (FiremenPlotFireState for: self)
 ]

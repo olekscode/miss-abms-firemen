@@ -58,12 +58,11 @@ FiremenModel >> init [
 
 	self createGridLines: 30 columns: 30 neighbourhood: 8 closed: true.
 	
-	thePlots do: [ :each | 
-		each state: (Cormas random < 0.5
-			ifTrue: [ #forest ]
-			ifFalse: [ #empty ]) ].
+	thePlots do: [ :plot | 
+		Cormas random < 0.5 ifTrue: [
+			plot generateForest ] ].
 		
-	(self pickEntity: FiremenPlot) state: #fire.
+	(self pickEntity: FiremenPlot) setOnFire.
 	
 	self createN: numberOfFirefighters randomlyLocatedAloneEntities: FiremenFirefighter.
 ]
