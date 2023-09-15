@@ -36,5 +36,5 @@ FiremenPlotFireState >> newState [
 		ifFalse: [ FiremenPlotAshState for: plot ]
 		ifTrue: [
 			stepCount := stepCount + 1.
-			^ self ]
+			self ]
 ]
