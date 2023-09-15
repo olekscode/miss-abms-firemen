@@ -34,6 +34,12 @@ FiremenPlotState >> isEmptyState [
 ]
 
 { #category : #testing }
+FiremenPlotState >> isExtinguishedState [
+
+	^ false
+]
+
+{ #category : #testing }
 FiremenPlotState >> isFireState [
 
 	^ false

@@ -13,7 +13,7 @@ FiremenPlot class >> entityName [
 { #category : #'plot management' }
 FiremenPlot >> extinguishFire [
 
-	self state: (FiremenPlotEmptyState for: self)
+	self state: (FiremenPlotExtinguishedState for: self)
 ]
 
 { #category : #'plot management' }
@@ -39,6 +39,12 @@ FiremenPlot >> isAsh [
 FiremenPlot >> isEmpty [
 
 	^ state isEmptyState
+]
+
+{ #category : #testing }
+FiremenPlot >> isExtinguished [
+
+	^ state isExtinguishedState
 ]
 
 { #category : #testing }

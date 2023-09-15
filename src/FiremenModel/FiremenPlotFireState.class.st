@@ -20,7 +20,7 @@ FiremenPlotFireState >> initialize [
 	super initialize.
 	
 	stepCount := 1.
-	stepsToBurn := 10.
+	stepsToBurn := 20.
 ]
 
 { #category : #testing }
