@@ -2,12 +2,25 @@ Class {
 	#name : #FiremenModel,
 	#superclass : #CMAbstractModel,
 	#instVars : [
+		'numberOfFirefighters',
 		'thePlots',
 		'theFirefighters',
 		'groups'
 	],
 	#category : #FiremenModel
 }
+
+{ #category : #'- probes' }
+FiremenModel class >> colorOfProbe_probeNumberOfForestPlots [
+
+  ^ Color green
+]
+
+{ #category : #'- probes' }
+FiremenModel class >> colorOfProbe_probeNumberOfPlotsOnFire [
+
+  ^ Color red
+]
 
 { #category : #'as yet unclassified' }
 FiremenModel >> divideFirefightersIntoGroups [
@@ -17,10 +30,13 @@ FiremenModel >> divideFirefightersIntoGroups [
 	group1 := FiremenGroup new.
 	group2 := FiremenGroup new.
 	
-	1 to: 6 do: [ :index |
+	group1 color: Color yellow.
+	group2 color: Color purple.
+	
+	1 to: (numberOfFirefighters / 2) do: [ :index |
 		group1 add: (theFirefighters at: index) ].
 	
-	7 to: 12 do: [ :index |
+	(numberOfFirefighters / 2) + 1 to: numberOfFirefighters do: [ :index |
 		group2 add: (theFirefighters at: index) ].
 	
 	groups add: group1.
@@ -39,7 +55,7 @@ FiremenModel >> init [
 		
 	(self pickEntity: FiremenPlot) state: #fire.
 	
-	self createN: 12 randomlyLocatedAloneEntities: FiremenFirefighter.
+	self createN: numberOfFirefighters randomlyLocatedAloneEntities: FiremenFirefighter.
 	
 	self divideFirefightersIntoGroups.
 ]
@@ -48,9 +64,26 @@ FiremenModel >> init [
 FiremenModel >> initialize [
 
 	super initialize.
+	
+	numberOfFirefighters := 12.
+	
 	thePlots := OrderedCollection new.
 	theFirefighters := OrderedCollection new.
 	groups := OrderedCollection new.
+]
+
+{ #category : #probes }
+FiremenModel >> probeNumberOfForestPlots [
+
+	<probe>
+	^ (thePlots select: [ :plot | plot isForest ]) size
+]
+
+{ #category : #probes }
+FiremenModel >> probeNumberOfPlotsOnFire [
+
+	<probe>
+	^ (thePlots select: [ :plot | plot isFire ]) size
 ]
 
 { #category : #control }
