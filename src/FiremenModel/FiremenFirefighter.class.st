@@ -3,6 +3,9 @@ Class {
 	#superclass : #CMAgent,
 	#traits : 'TCMLocated',
 	#classTraits : 'TCMLocated classTrait',
+	#instVars : [
+		'group'
+	],
 	#category : #FiremenModel
 }
 
@@ -10,6 +13,18 @@ Class {
 FiremenFirefighter class >> entityName [
 
 	^ 'Firefighter'
+]
+
+{ #category : #accessing }
+FiremenFirefighter >> group [ 
+
+	^ group
+]
+
+{ #category : #accessing }
+FiremenFirefighter >> group: aGroup [
+
+	group := aGroup
 ]
 
 { #category : #pov }
