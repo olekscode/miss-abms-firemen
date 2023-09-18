@@ -9,12 +9,6 @@ Class {
 	#category : #FiremenModel
 }
 
-{ #category : #accessing }
-FiremenFirefighter class >> entityName [
-
-	^ 'Firefighter'
-]
-
 { #category : #stepping }
 FiremenFirefighter >> followTheGroupOrWalkRandomly [
 

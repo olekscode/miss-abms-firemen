@@ -4,12 +4,6 @@ Class {
 	#category : #FiremenModel
 }
 
-{ #category : #accessing }
-FiremenPlot class >> entityName [
-
-	^ 'Plot'
-]
-
 { #category : #'plot management' }
 FiremenPlot >> extinguishFire [
 

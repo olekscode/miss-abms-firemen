@@ -160,12 +160,14 @@ FiremenModel >> step: t [
 
 { #category : #accessing }
 FiremenModel >> theFirefighters [
+	<getterFor: #FiremenFirefighter>
 
 	^ theFirefighters
 ]
 
 { #category : #accessing }
 FiremenModel >> thePlots [
+	<getterFor: #FiremenPlot>
 
 	^ thePlots
 ]
